@@ -9,7 +9,6 @@ import {
 
 import type { Route } from "./+types/root";
 import { Nav } from "./nav_bar/nav_bar";
-import { hydrateRoot } from "react-dom/client";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
