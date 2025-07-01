@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>React App</title>
+  <!-- Font preconnects and stylesheet from root.tsx -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" />
+  <!-- Assuming app.css is a local file; adjust the path if hosted elsewhere -->
+  <link rel="stylesheet" href="./app.css" />
+  <!-- React and React Router CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-router-dom@6.26.2/dist/umd/react-router-dom.min.js"></script>
+  <!-- Babel for JSX transpilation -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- Scroll restoration script -->
+  <script>
+    // Mimic ScrollRestoration behavior
+    window.history.scrollRestoration = 'auto';
+    window.addEventListener('popstate', () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
+
+  <script src="./nav_bar/nav_bar.tsx"></script>
+  <script type="text/babel">
+    const { createBrowserRouter, RouterProvider, useRouteError } = ReactRouterDOM;
+
+    // Layout component from root.tsx
+    function Layout({ children }) {
+      return (
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+          </head>
+          <body>
+            {children}
+          </body>
+        </html>
+      );
+    }
+
+    // ErrorBoundary component from root.tsx
+    function ErrorBoundary() {
+      const error = useRouteError();
+      let message = "Oops!";
+      let details = "An unexpected error occurred.";
+      let stack;
+
+      if (ReactRouterDOM.isRouteErrorResponse(error)) {
+        message = error.status === 404 ? "404" : "Error";
+        details =
+          error.status === 404
+            ? "The requested page could not be found."
+            : error.statusText || details;
+      } else if (process.env.NODE_ENV === 'development' && error instanceof Error) {
+        details = error.message;
+        stack = error.stack;
+      }
+
+      return (
+        <main className="pt-16 p-4 container mx-auto">
+          <h1>{message}</h1>
+          <p>{details}</p>
+          {stack && (
+            <pre className="w-full p-4 overflow-x-auto">
+              <code>{stack}</code>
+            </pre>
+          )}
+        </main>
+      );
+    }
+
+    // App component from root.tsx
+    function App() {
+      return (
+        <div>
+          <Nav />
+          <Outlet />
+        </div>
+      );
+    }
+
+    // Define routes
+    const router = createBrowserRouter([
+      {
+        path: "/",
+        element: (
+          <Layout>
+            <App />
+          </Layout>
+        ),
+        errorElement: <ErrorBoundary />,
+        children: [
+          {
+            index: true,
+            element: <div>Welcome to the Home Page</div>, // Example home route
+          },
+          {
+            path: "*",
+            element: <div>Not Found</div>, // Catch-all route
+          },
+        ],
+      },
+    ]);
+
+    // Render the app
+    ReactDOM.render(
+      <RouterProvider router={router} />,
+      document.getElementById("root")
+    );
+  </script>
+</body>
+</html>
