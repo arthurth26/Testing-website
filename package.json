@@ -1,5 +1,4 @@
 {
-  "homepage": "https://arthurth26.github.io/Testing-website/",
   "name": "test",
   "private": true,
   "type": "module",
@@ -7,9 +6,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build/server/"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@babel/runtime": "^7.27.6",
