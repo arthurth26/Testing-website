@@ -1,12 +1,11 @@
-import { HouseHome } from "@vectopus/atlas-icons-react";
 import {NavLink} from "react-router"; 
-
+import home from "/home.svg";
 
 export function Nav () {
     return (
         <div className="flex justify-around bg-gray-800 p-4">
             <NavLink to="/" className="flex-none">
-                <HouseHome size={24} className="text-gray-200"/>
+                <img src={home} alt="icon"/>
             </NavLink>          
             <div className="items-center mx-auto place-items-center"> 
                 <NavLink to="/" className={({isActive}) => isActive ? "text-teal-500 mx-4 pl-20" : "text-gray-200 mx-4 pl-20"}>
