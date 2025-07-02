@@ -3,7 +3,6 @@ import { HouseHome, MagnifyingGlass } from "@vectopus/atlas-icons-react";
 import React from "react";
 
 export function Nav () {
-
     return (
         <div className="flex justify-around bg-gray-800 p-4">
             <NavLink to="/" className="flex-none">
