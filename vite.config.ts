@@ -7,5 +7,8 @@ import netlifyPlugin from "@netlify/vite-plugin-react-router";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), netlifyPlugin()],
+  optimizeDeps: {
+    include:['@vectopus/atlas-icons-react']
+  },
 });
 
