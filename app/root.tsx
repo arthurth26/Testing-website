@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import { Nav } from "./nav_bar/nav_bar";
 import "./app.css";
+import { SearchProvider } from "./routes/searchContext";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,8 +46,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (<div>
+    <SearchProvider>
       <Nav/>
       <Outlet/>
+    </SearchProvider>
     </div>
   );
 }
