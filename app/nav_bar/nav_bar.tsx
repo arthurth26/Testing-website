@@ -23,8 +23,8 @@ const SearchBar = ({searchTerm, setSearchTerm}:{searchTerm:string, setSearchTerm
     return (
     <input 
         type="text" 
-        placeholder="Search Blogs?" 
-        className="text-gray-200 border rounded-lg p-2"
+        placeholder="  Search Blogs?" 
+        className="text-gray-200 border rounded-lg sm:text-sm/6 focus:-outline-offset-2 text-base"
         value={searchTerm}
         onChange={handleSearchChange}
     />
