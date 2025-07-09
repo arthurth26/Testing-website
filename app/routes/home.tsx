@@ -11,9 +11,9 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <div className="p-20">
-    <Welcome />
-    <Clock/>
+    <div className="p-20 bg-[url(/void.jpg)] bg-no-repeat bg-cover bg-center">
+      <Welcome/>
+      <Clock/>
     </div>
   );
 }
