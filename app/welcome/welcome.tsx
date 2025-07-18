@@ -25,9 +25,8 @@ export function Welcome() {
     }
   }, [visible, fadeMessage]);
 
-
   return (
-    <main className="grid justify-center pb-4">
+    <main className="grid justify-center">
       <div>
         <h1 className="content-center text-center text-[100px] font-bold text-gray-200 dark:text-gray-200">
           Scream into the void
@@ -36,7 +35,7 @@ export function Welcome() {
       <div>
         {(!message && !fadeMessage) ? 
           <p className='pt-40 text-center text-2xl text-gray-200 dark:text-gray-200'>Type something to send it into the void</p> :
-          <p className={`pt-40 text-center text-2xl text-gray-200 dark:text-gray-200 transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} `}>{fadeMessage||message}</p>}
+          <p className={`pt-20 text-center text-2xl text-gray-200 dark:text-gray-200 transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} `}>{fadeMessage||message}</p>}
       </div>
       <div className="flex items-baseline justify-center">
         <input placeholder="Type your message here and press enter to sent" className="mt-60 p-2 border rounded w-full text-teal-200 dark:text-teal-200 bg-black" value={message} onChange={(e)=> setMessage(e.target.value)} onKeyDown={handleKeyPress}/>
